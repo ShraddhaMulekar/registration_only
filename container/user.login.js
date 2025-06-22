@@ -1,6 +1,6 @@
 import UserModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 const logInContainer = async (req, res) => {
   const { email, password } = req.body;
@@ -16,18 +16,17 @@ const logInContainer = async (req, res) => {
         if (err) {
           console.log("error here", err);
           res.json({ msg: "error here", err });
-        } 
-        if(result){
+        }
+        if (result) {
           const payload = {
             userID: matchEmail._id,
             userName: matchEmail.userName,
           };
           const token = jwt.sign(payload, process.env.SECRETEKEY);
-          console.log("Log in successful!", token)
+          console.log("Log in successful!", token);
           res.json({ msg: "Log in successful!", token });
-        }
-        else{
-            res.json({msg:"Invalid password"})
+        } else {
+          res.json({ msg: "Invalid password" });
         }
       });
     }
