@@ -27,7 +27,7 @@ const logInContainer = async (req, res) => {
           res.json({ msg: "Log in successful!", token });
         }
         else{
-            res.json({msg:"error"})
+            res.json({msg:"Invalid password"})
         }
       });
     }
